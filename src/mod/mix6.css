@@ -1,0 +1,21 @@
+div.mix6 {
+  display: table;
+}
+
+div.mix6 > div {
+  display: table-row;
+}
+
+div.mix6 > div > div {
+  display: table-cell;
+  padding: 4px;
+  text-align: center;
+}
+
+div.mix6 span.good {
+  background: #ffa;
+}
+
+div.mix6 span.grey {
+  color: rgba(0,0,0,.4);
+}

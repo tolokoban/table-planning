@@ -1,8 +1,54 @@
-<w-html app="main">
-    <section>
-        <center>
-            <wdg:button $text="English" $icon="flag-en" />
-            <wdg:button $text="Français" $icon="flag-fr" />
-        </center>
-    </section>
-</w-html>
+<x-html title="Le planning des corvées" app="app">
+  <section>
+    <x-md>
+# Le planning des corvées
+
+J'ai trois enfants : __A__lbert, __B__éatrice et __C__harline. Ils ont comme
+corvée de mettre et débarrasser la table quand c'est leur jour.
+J'ai donc créé un planning qui respectait les contraintes suivantes :
+* tous les enfants travaillent le même nombre de jours
+* et aucun enfant ne travaille deux jours de suite.
+
+La solution était évidente : j'ai mis en place l'alternance `ABCABCABC...`.
+Tout allait bien jusqu'au jour où Albert s'est plaint de trouver le système
+injuste.
+
+> _MOI_ : "Pourquoi trouves-tu ce système injuste, Albert ?"  
+> _ALBERT_ : "Eh bien, il se trouve que je suis toujours après Charline."  
+> _MOI_ : "Et alors ?"  
+> _ALBERT_ : "Charline n'est pas très sérieuse et je me retrouve souvent à devoir faire plus de travail pour compenser ses manquemments."
+
+Ne voulant pas me lancer dans des discussions sans fin avec Albert et Charline,
+j'ai décidé de modifier mon plannig en y ajoutant une contrainte :
+* chaque enfant se trouve autant de fois après l'un ou l'autre des autres enfants.
+
+Ainsi, Albert sera aussi souvent après Charline qu'après Béatrice.
+
+# Les triplets gagnants
+
+L'idée de cette technique est d'énuméré tous les arrangements de `ABC`.
+Il n'y en a que 6 et les voila :
+* `ABC`, `ACB`, `BAC`, `BCA`, `CAB`, `CBA`.
+
+Avec mon planning simple, j'avais une séquence de 3 jours qui se répétaient :
+`ABC...`.
+Avec cette nouvelle technique, je vais avoir une séquence composées de tous les
+arrangements. Sa longueur sera donc de `3 &times; 6 = 18` jours.
+
+Tout ce qu'il me reste à faire, c'est de mettre ces 6 arrangements dans un ordre
+qui respecte la contrainte "aucun enfant ne travaille deux jours de suite".
+
+Comme je recherche un cycle, il peut commencer par n'importe quel arrangement.
+Je choisis donc de rechercher tous les cycles possibles commençant par `ABC`.
+Je dois donc en tester au maximum `5! = 5 &times; 4 &times; 3 &times; 2 = 120`.
+Et comme je fais ma recherche sous forme d'arbre, beaucoup de branches s'arrêtent
+d'elles-même, minimisant grandement le nombre d'essais.
+Voici le résultat fait à la main :
+
+<x-widget name="mix6"/>
+
+
+
+    </x-md>
+  </section>
+</x-html>
